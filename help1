@@ -1,0 +1,44 @@
+import pandas as pd
+import numpy as np
+import os
+
+class StockDataset:
+    def __init__(self, path, code):
+        # 종목이 들어 있는 폴더의 위치와 코드로부터 종목 파일 이름 생성
+        fn = os.path.join(str(path), str(code)+".csv")
+        # pandas를 이용해서 열기
+        self.dataframe=pd.read_csv(fn)
+        # 날짜, 시가, 고가, 저가 종가, 거래량 데이터를 과거로부터 현재의 순서로 2-d array에 저장
+        self.data = None # None을 여러분이 직접 작성한 코드로 대체하세요.
+        # 날짜 추출
+        self.date = None # None을 여러분이 직접 작성한 코드로 대체하세요.
+        # 가격 추출
+        self.price = None # None을 여러분이 직접 작성한 코드로 대체하세요.
+        # 거래량 추출
+        self.volume = None # None을 여러분이 직접 작성한 코드로 대체하세요.
+        # code 저장
+        self.code = code
+
+    # 아래의 두 멤버 함수는 임시로 주석처리 함. 나중에 여러분의 결과 확인을 위해서 활성화시키시길 바랍니다.
+    def __len__(self):  # 데이터의 길이는?
+        return len(self.date) # 임시로 주석처리 함.
+
+
+    def __getitem__(self, item):
+        # map style의 데이터 접근 방식 제공
+        return self.date[item], self.price[item], self.volume[item]
+
+if __name__=="__main__":
+    path = "C:/Users/user/Desktop/INUclass"
+    code = "122630"         # 종목 코드
+    sd = StockDataset(path, code)   # class instance 생성
+    print(sd.dataframe)
+    print(sd.data)      # 데이터에는 어떤 정보가 들어 있나?
+    print(sd.date)      # 날짜는 잘 저장이 되었나?
+    print(sd.price)     # 가격은?
+    print(sd.volume)    # 거래량은?
+    # 아래 내용은 여러분이 과제를 다 한 후 결과 확인을 위해서 활성화시키시길 바랍니다.
+    # print(len(sd))      # 데이터셋의 크기는?
+    # print(sd[-1])       # 가장 마지막 데이터는?
+    # N=5
+    # print(sd[-N:])      # 가장 최근의 데이터 5개는?
